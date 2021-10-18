@@ -13,28 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::view('/', 'welcome');
 
-Route::get('/', function() {
-
-      return view('welcome');
-});
-
-Route::get('hola', function() {
-
+Route::get('hola', function(){
     return view('hola');
 });
 
-Route::get('adios', function() {
-
+Route::get('adios', function(){
     return view('adios');
 });
 
-// Route::get('hola/{name}', function($name){
-//     return '<h1>Hola '. $name . '</h1>';
-// });
-
-// Se puede agregar codigo html
-
+Route::view('/portfolio', 'portfolio');

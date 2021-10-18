@@ -1,4 +1,7 @@
 @include('includes.header')
 
-@include('includes.footer')
+<p>
+    @yield('content', 'aquí va el contenido')
+</p>
 
+@include('includes.footer')
