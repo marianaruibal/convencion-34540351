@@ -3,6 +3,10 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Skill;
+use App\Models\SocialMedia;
+use App\Models\WhatIdo;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +17,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        User::factory(10)->create();
+        Skill::factory(10)->create();
+        SocialMedia::factory(10)->create();
+        WhatIdo::factory(10)->create();
     }
 }
