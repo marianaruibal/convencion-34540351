@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWhatIdosTable extends Migration
+class CreateFeaturedPostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ class CreateWhatIdosTable extends Migration
      */
     public function up()
     {
-        Schema::create('what_idos', function (Blueprint $table) {
+        Schema::create('featured_posts', function (Blueprint $table) {
             $table->id();
+
             $table->unsignedBigInteger('user_id');
-            $table->string('title');
-            $table->string('description');
+            $table->string('title')->nullable();
+            $table->string('date')->nullable();
+            $table->string('platform')->nullable();
+            $table->string('post')->nullable();
+
             $table->timestamps();
         });
     }
@@ -29,6 +33,6 @@ class CreateWhatIdosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('what_idos');
+        Schema::dropIfExists('featured_posts');
     }
 }

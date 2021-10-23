@@ -31,7 +31,7 @@ Route::get('adios', function(){
 
 Route::get('/portfolio/{slug}', function($slug){
 
-    $user = User::with('skill')->with('education')->with('aboutme')->with('whatido')->with('featureproyect')->with('professionalskills')->where('slug', $slug)->first();
+    $user = User::with('skill')->with('education')->with('aboutme')->with('whatido')->with('featureproyect')->with('professionalskill')->with('workexperience')->with('featuredpost')->where('slug', $slug)->first();
 
     //dd($user);
 

@@ -20,7 +20,7 @@ class CreateFeaturedProyectsTable extends Migration
             $table->string('branch')->nullable();
             $table->string('title')->nullable();
             $table->string('tags')->nullable();
-            $table->tinyText('description')->nullable();
+            $table->string('description')->nullable();
             $table->string('opinion')->nullable();
             $table->string('name')->nullable();
 

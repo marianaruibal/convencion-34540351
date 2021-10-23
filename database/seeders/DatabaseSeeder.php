@@ -4,8 +4,10 @@ namespace Database\Seeders;
 
 use App\Models\AboutMe;
 use App\Models\Education;
+use App\Models\FeaturedPost;
 use App\Models\FeaturedProyect;
 use App\Models\ProfessionalSkill;
+use App\Models\WorkExperience;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Skill;
@@ -28,5 +30,7 @@ class DatabaseSeeder extends Seeder
         AboutMe::factory(25)->create();
         FeaturedProyect::factory(18)->create();
         ProfessionalSkill::factory(25)->create();
+        WorkExperience::factory(25)->create();
+        FeaturedPost::factory(25)->create();
     }
 }

@@ -205,7 +205,7 @@
                         <h3>Professional Skills</h3>
                         <ul class="mh-professional-progress">
 
-                            @foreach($user->professionalskills as $pskills)
+                            @foreach($user->professionalskill as $pskills)
                             <li>
                                 <div class="mh-progress mh-progress-circle" data-progress="{{ $pskills->percent }}"></div>
                                 <div class="pr-skill-name">{{ $pskills->p_skill }}</div>
@@ -249,35 +249,18 @@
                         <h3>Work Experience</h3>
                         <div class="mh-experience-deatils">
                             <!-- Education Institutes-->
+                            @foreach($user->workexperience as $w_exp)
                             <div class="mh-work-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">
-                                <h4>UI/UX Designer <a href="#">IronSketch</a></h4>
-                                <div class="mh-eduyear">2005-2008</div>
+                                <h4>UI/UX Designer <a href="#">{{ $w_exp->possition }}</a></h4>
+                                <div class="mh-eduyear">{{ $w_exp->start_date }} - {{ $w_exp->finish_date }}</div>
                                 <span>Responsibility :</span>
                                 <ul class="work-responsibility">
-                                    <li><i class="fa fa-circle"></i>Validate CSS</li>
-                                    <li><i class="fa fa-circle"></i>Project Management</li>
+                                    <li><i class="fa fa-circle"></i>{{ $w_exp->responsability1 }}</li>
+                                    <li><i class="fa fa-circle"></i>{{ $w_exp->responsability2 }}</li>
                                 </ul>
                             </div>
-                            <!-- Education Institutes-->
-                            <div class="mh-work-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s">
-                                <h4>Art & Multimedia From <a href="#">Oxford University</a></h4>
-                                <div class="mh-eduyear">2005-2008</div>
-                                <span>Responsibility :</span>
-                                <ul class="work-responsibility">
-                                    <li><i class="fa fa-circle"></i>Validate CSS</li>
-                                    <li><i class="fa fa-circle"></i>Project Management</li>
-                                </ul>
-                            </div>
-                            <!-- Education Institutes-->
-                            <div class="mh-work-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">
-                                <h4>Art & Multimedia From <a href="#">Oxford University</a></h4>
-                                <div class="mh-eduyear">2005-2008</div>
-                                <span>Responsibility :</span>
-                                <ul class="work-responsibility">
-                                    <li><i class="fa fa-circle"></i>Validate CSS</li>
-                                    <li><i class="fa fa-circle"></i>Project Management</li>
-                                </ul>
-                            </div>
+                            @endforeach
+
                         </div>
                     </div>
                 </div>
@@ -547,54 +530,27 @@
                 <div class="col-sm-12 section-title wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
                     <h3>Featured Posts</h3>
                 </div>
+                @foreach($user->featuredpost as $post)
                 <div class="col-sm-12 col-md-4">
                     <div class="mh-blog-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
                         <img src="{{ asset('assets/images/b-3.png') }}" alt="" class="img-fluid">
                         <div class="blog-inner">
-                            <h2><a href="blog-single.html">A life without the daily traffic jams</a></h2>
+                            <h2><a href="blog-single.html">{{ $post->title }}</a></h2>
                             <div class="mh-blog-post-info">
                                 <ul>
-                                    <li><strong>Post On</strong><a href="#">24.11.19</a></li>
-                                    <li><strong>By</strong><a href="#">ThemeSpiders</a></li>
+                                    <li><strong>Post On</strong><a href="#">{{ $post->date }}</a></li>
+                                    <li><strong>By</strong><a href="#">{{ $post->platform }}</a></li>
                                 </ul>
                             </div>
-                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout</p>
+                            <p>{{ $post->post }}</p>
                             <a href="blog-single.html">Read More</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4">
-                    <div class="mh-blog-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
-                        <img src="{{ asset('assets/images/b-2.png') }}" alt="" class="img-fluid">
-                        <div class="blog-inner">
-                            <h2><a href="blog-single.html">Proportion are what’s really needed</a></h2>
-                            <div class="mh-blog-post-info">
-                                <ul>
-                                    <li><strong>Post On</strong><a href="#">24.11.19</a></li>
-                                    <li><strong>By</strong><a href="#">ThemeSpiders</a></li>
-                                </ul>
-                            </div>
-                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout</p>
-                            <a href="blog-single.html">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <div class="mh-blog-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">
-                        <img src="{{ asset('assets/images/b-1.png') }}" alt="" class="img-fluid">
-                        <div class="blog-inner">
-                            <h2><a href="blog-single.html">Mounts of paper work to remember the way</a></h2>
-                            <div class="mh-blog-post-info">
-                                <ul>
-                                    <li><strong>Post On</strong><a href="#">24.11.19</a></li>
-                                    <li><strong>By</strong><a href="#">ThemeSpiders</a></li>
-                                </ul>
-                            </div>
-                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout</p>
-                            <a href="blog-single.html">Read More</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
+
+
             </div>
         </div>
     </div>

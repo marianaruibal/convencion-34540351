@@ -79,13 +79,23 @@ class User extends Authenticatable
         return $this->hasMany(AboutMe::class, 'user_id', 'id');
     }
 
+    public function professionalskill()
+    {
+        return $this->hasMany(ProfessionalSkill::class, 'user_id', 'id');
+    }
+
     public function featureproyect()
     {
         return $this->hasMany(FeaturedProyect::class, 'user_id', 'id');
     }
 
-    public function professionalskills()
+    public function workexperience()
     {
-        return $this->hasMany(ProfessionalSkill::class, 'user_id', 'id');
+        return $this->hasMany(WorkExperience::class, 'user_id', 'id');
+    }
+
+    public function featuredpost()
+    {
+        return $this->hasMany(FeaturedPost::class, 'user_id', 'id');
     }
 }
