@@ -22,7 +22,13 @@ class ContactFactory extends Factory
     public function definition()
     {
         return [
-            //
+
+            'address' => $this->faker->address,
+            'country' => $this->faker->country,
+            'email' => $this->faker->email,
+            'phone' => '+5411542368',
+            'user_id'=> rand(1,5),
+
         ];
     }
 }

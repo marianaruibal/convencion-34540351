@@ -20,10 +20,13 @@
                                     </div>
                                     <div class="each-info media-body">
                                         <h4>Address</h4>
+
+                                        @foreach($user->contact as $contact)
                                         <address>
-                                            5th Avenue, 34th floor, <br>
-                                            New york
+                                            {{ $contact->address }}, <br>
+                                            {{ $contact->country }}
                                         </address>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -34,8 +37,9 @@
                                     </div>
                                     <div class="each-info media-body">
                                         <h4>Email</h4>
-                                        <a href="mailto:yourmail@email.com">yourmail@email.com</a><br>
-                                        <a href="mailto:yourmail@email.com">yourmail@email.com</a>
+                                        @foreach($user->contact as $contact)
+                                        <a href="mailto:{{ $contact->email }}">{{ $contact->email }}</a><br>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -46,8 +50,9 @@
                                     </div>
                                     <div class="each-info media-body">
                                         <h4>Phone</h4>
-                                        <a href="callto:(880)-8976-987">(880)-8976-987</a><br>
-                                        <a href="callto:(880)-8976-987">(880)-8976-987</a>
+                                        @foreach($user->contact as $contact)
+                                        <a href="callto:{{ $contact->phone }}">{{ $contact->phone }}</a><br>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>

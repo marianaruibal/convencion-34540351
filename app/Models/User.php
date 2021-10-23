@@ -98,4 +98,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(FeaturedPost::class, 'user_id', 'id');
     }
+
+    public function contact()
+    {
+        return $this->hasMany(Contact::class, 'user_id', 'id');
+    }
 }

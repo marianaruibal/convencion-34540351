@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\AboutMe;
+use App\Models\Contact;
 use App\Models\Education;
 use App\Models\FeaturedPost;
 use App\Models\FeaturedProyect;
@@ -32,5 +33,6 @@ class DatabaseSeeder extends Seeder
         ProfessionalSkill::factory(25)->create();
         WorkExperience::factory(25)->create();
         FeaturedPost::factory(25)->create();
+        Contact::factory(15)->create();
     }
 }

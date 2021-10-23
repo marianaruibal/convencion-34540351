@@ -46,7 +46,7 @@ Route::get('/portfolio/{slug}', function($slug){
 
 Route::get('/portfolio', function(){
 
-    $user = User::with('skill')->with('education')->with('aboutme')->with('whatido')->with('featureproyect')->with('professionalskills')->latest()->get();
+    $user = User::with('skill')->with('education')->with('aboutme')->with('whatido')->with('featureproyect')->with('professionalskills')->with('contact')->latest()->get();
     //$skill = Skill::latest()->get();
 
     //dd($user);
