@@ -31,7 +31,7 @@ Route::get('adios', function(){
 
 Route::get('/portfolio/{slug}', function($slug){
 
-    $user = User::with('skill')->with('education')->with('aboutme')->with('whatido')->with('featureproyect')->with('professionalskill')->with('workexperience')->with('featuredpost')->where('slug', $slug)->first();
+    $user = User::with('skill')->with('education')->with('whatido')->with('featureproyect')->with('professionalskill')->with('workexperience')->with('featuredpost')->where('slug', $slug)->first();
 
     //dd($user);
 
@@ -43,17 +43,17 @@ Route::get('/portfolio/{slug}', function($slug){
 
 
 });
-
+/*
 Route::get('/portfolio', function(){
 
-    $user = User::with('skill')->with('education')->with('aboutme')->with('whatido')->with('featureproyect')->with('professionalskills')->with('contact')->latest()->get();
+    $user = User::with('skill')->with('education')->with('whatido')->with('featureproyect')->with('professionalskills')->latest()->get();
     //$skill = Skill::latest()->get();
 
     //dd($user);
     //return view('portfolio', compact('user', 'skill'));
     return view('portfolio')->with('user', $user[0]);
 });
-
+*/
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

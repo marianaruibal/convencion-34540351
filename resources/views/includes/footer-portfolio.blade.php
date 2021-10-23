@@ -21,12 +21,11 @@
                                     <div class="each-info media-body">
                                         <h4>Address</h4>
 
-                                        @foreach($user->contact as $contact)
                                         <address>
-                                            {{ $contact->address }}, <br>
-                                            {{ $contact->country }}
+                                            {{ $user->address }}, <br>
+                                            {{ $user->country }} <br>
+
                                         </address>
-                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -37,9 +36,8 @@
                                     </div>
                                     <div class="each-info media-body">
                                         <h4>Email</h4>
-                                        @foreach($user->contact as $contact)
-                                        <a href="mailto:{{ $contact->email }}">{{ $contact->email }}</a><br>
-                                        @endforeach
+                                        <a href="mailto:{{ $user->email }}">{{ $user->email }}</a><br>
+                                        <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -50,9 +48,8 @@
                                     </div>
                                     <div class="each-info media-body">
                                         <h4>Phone</h4>
-                                        @foreach($user->contact as $contact)
-                                        <a href="callto:{{ $contact->phone }}">{{ $contact->phone }}</a><br>
-                                        @endforeach
+                                        <a href="callto:{{ $user->tel }}">{{ $user->tel }}</a><br>
+                                        <a href="callto:{{ $user->tel }}">{{ $user->tel }}</a>
                                     </div>
                                 </div>
                             </div>

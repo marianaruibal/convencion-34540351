@@ -61,9 +61,9 @@
                 <div class="mh-about-inner">
                     <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">About Me</h2>
 
-                    @foreach($user->aboutme as $aboutme)
-                    <p class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">{{ $aboutme->description }}</p>
-                    @endforeach
+
+                    <p class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">{{ $user->description }}</p>
+
                     <div class="mh-about-tag wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
                         <ul>
                             @foreach($user->skill as $skill)

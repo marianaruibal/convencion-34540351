@@ -74,11 +74,6 @@ class User extends Authenticatable
         return $this->hasMany(WhatIdo::class, 'user_id', 'id');
     }
 
-    public function aboutme()
-    {
-        return $this->hasMany(AboutMe::class, 'user_id', 'id');
-    }
-
     public function professionalskill()
     {
         return $this->hasMany(ProfessionalSkill::class, 'user_id', 'id');
@@ -99,8 +94,5 @@ class User extends Authenticatable
         return $this->hasMany(FeaturedPost::class, 'user_id', 'id');
     }
 
-    public function contact()
-    {
-        return $this->hasMany(Contact::class, 'user_id', 'id');
-    }
+
 }

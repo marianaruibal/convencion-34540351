@@ -31,7 +31,9 @@ class UserFactory extends Factory
             'title_job' => $this->faker->text,
             'tel' => '+54114569863',
             'address' => $this->faker->address,
+            'country' => $this->faker->country,
             'excerpt' => $this->faker->text,
+            'description' => $this->faker->text,
             'email_verified_at' => now(),
             'password' => '$2a$12$UDauu/qK4xtGdcs8W.lK0ugkmROMkkR/rbzEEYdGqmDdLH6OrCeuKZ', // password
             'remember_token' => Str::random(10),
