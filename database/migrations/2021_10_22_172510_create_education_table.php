@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAboutMesTable extends Migration
+class CreateEducationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,16 @@ class CreateAboutMesTable extends Migration
      */
     public function up()
     {
-        Schema::create('about_mes', function (Blueprint $table) {
+        Schema::create('education', function (Blueprint $table) {
             $table->id();
+
             $table->unsignedBigInteger('user_id');
-            $table->tinyText('description')->nullable();
+            $table->tinyText('degree')->nullable();
+            $table->string('school_name')->nullable();
+            $table->string('start_date')->nullable();
+            $table->string('finish_date')->nullable();
+            $table->text('description')->nullable();
+
             $table->timestamps();
         });
     }
@@ -28,6 +34,6 @@ class CreateAboutMesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('about_mes');
+        Schema::dropIfExists('education');
     }
 }

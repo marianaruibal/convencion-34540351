@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAboutMesTable extends Migration
+class CreateFeaturedProyectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,17 @@ class CreateAboutMesTable extends Migration
      */
     public function up()
     {
-        Schema::create('about_mes', function (Blueprint $table) {
+        Schema::create('featured_proyects', function (Blueprint $table) {
             $table->id();
+
             $table->unsignedBigInteger('user_id');
+            $table->string('branch')->nullable();
+            $table->string('title')->nullable();
+            $table->string('tags')->nullable();
             $table->tinyText('description')->nullable();
+            $table->string('opinion')->nullable();
+            $table->string('name')->nullable();
+
             $table->timestamps();
         });
     }
@@ -28,6 +35,6 @@ class CreateAboutMesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('about_mes');
+        Schema::dropIfExists('featured_proyects');
     }
 }

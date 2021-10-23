@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Skill;
+use App\Models\Education;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class SkillFactory extends Factory
+class EducationFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Skill::class;
+    protected $model = Education::class;
 
     /**
      * Define the model's default state.
@@ -22,8 +22,11 @@ class SkillFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->word,
-            'percent'=> rand(1,99),
+            'degree' => $this->faker->name,
+            'school_name' => $this->faker->name,
+            'start_date' => $this->faker->date,
+            'finish_date' => $this->faker->date,
+            'description' => $this->faker->text,
             'user_id'=> rand(1,5)
         ];
     }

@@ -15,13 +15,13 @@
                             <span>Hello I'm</span>
                         </div>
 
-                        <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">Alex Johnson</h2>
-                        <h4 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">Product Designer</h4>
+                        <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">{{ $user->name }}</h2>
+                        <h4 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">{{ $user->title_job }}</h4>
 
                         <ul>
-                            <li class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s"><i class="fa fa-envelope"></i><a href="mailto:">getemail@email.com</a></li>
-                            <li class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s"><i class="fa fa-phone"></i><a href="callto:">+12 986 987 7867</a></li>
-                            <li class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s"><i class="fa fa-map-marker"></i><address>37, Pollsatnd, New York, United State</address></li>
+                            <li class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s"><i class="fa fa-envelope"></i><a href="mailto:">{{ $user->email }}</a></li>
+                            <li class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s"><i class="fa fa-phone"></i><a href="callto:">{{ $user->tel }}</a></li>
+                            <li class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s"><i class="fa fa-map-marker"></i><address>{{ $user->address }}</address></li>
                         </ul>
 
                         <ul class="social-icon wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">
@@ -60,18 +60,16 @@
             <div class="col-sm-12 col-md-6">
                 <div class="mh-about-inner">
                     <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">About Me</h2>
-                    <p class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">Hello, I’m a Patrick, web-developer based on Paris.
-                        I have rich experience in web site design & building
-                        and customization. Also I am good at</p>
+
+                    @foreach($user->aboutme as $aboutme)
+                    <p class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">{{ $aboutme->description }}</p>
+                    @endforeach
                     <div class="mh-about-tag wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
                         <ul>
-                            <li><span>php</span></li>
-                            <li><span>html</span></li>
-                            <li><span>css</span></li>
-                            <li><span>php</span></li>
-                            <li><span>wordpress</span></li>
-                            <li><span>React</span></li>
-                            <li><span>Javascript</span></li>
+                            @foreach($user->skill as $skill)
+                                <li><span>{{ $skill->name }}</span></li>
+                            @endforeach
+
                         </ul>
                     </div>
                     <a href="#" class="btn btn-fill wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">Downlaod CV <i class="fa fa-download"></i></a>
@@ -92,39 +90,15 @@
             <div class="col-sm-12 text-center section-title wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
                 <h2>What I do</h2>
             </div>
+            @foreach($user->whatido as $whatido)
             <div class="col-sm-4">
                 <div class="mh-service-item shadow-1 dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
                     <i class="fa fa-bullseye purple-color"></i>
-                    <h3>UI Design</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                        magna aliquam erat volutpat.
-                    </p>
+                    <h3>{{ $whatido->title }}</h3>
+                    <p>{{ $whatido->description }}</p>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="mh-service-item shadow-1 dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
-                    <i class="fa fa-code iron-color"></i>
-                    <h3>Web Development</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                        magna aliquam erat volutpat.
-                    </p>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="mh-service-item shadow-1 dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">
-                    <i class="fa fa-object-ungroup sky-color"></i>
-                    <h3>App Development</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                        magna aliquam erat volutpat.
-                    </p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -144,6 +118,8 @@
                 <div class="col-sm-12">
                     <div class="mh-single-project-slide-by-side row">
                         <!-- Project Items -->
+
+                        @foreach($user->featureproyect as $feature)
                         <div class="col-sm-12 mh-featured-item">
                             <div class="row">
                                 <div class="col-sm-7">
@@ -151,106 +127,37 @@
                                         <img src="{{ asset('assets/images/p-2.png') }}" alt="" class="img-fluid">
                                     </div>
                                 </div>
+
                                 <div class="col-sm-5">
                                     <div class="mh-featured-project-content">
-                                        <h4 class="project-category wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">Web Design</h4>
-                                        <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">Wrap</h2>
-                                        <span class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s">Design & Development</span>
-                                        <p class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">Stamp is a clean and elegant Multipurpose Landing Page Template.
-                                            It will fit perfectly for Startup, Web App or any type of Web Services.
-                                            It has 4 background styles with 6 homepage styles. 6 pre-defined color scheme.
-                                            All variations are organized separately so you can use / customize the template very easily.</p>
+                                        <h4 class="project-category wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">
+                                            {{ $feature->branch }}</h4>
+                                        <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">{{ $feature->title }}</h2>
+                                        <span class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s">{{ $feature->tags }}</span>
+                                        <p class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">{{ $feature->description }}</p>
                                         <a href="#" class="btn btn-fill wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">View Details</a>
                                         <div class="mh-testimonial mh-project-testimonial wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.9s">
                                             <blockquote>
-                                                <q>Excellent Template - suits my needs perfectly whilst allowing me to learn some new technology first hand.</q>
-                                                <cite>- Shane Kavanagh</cite>
+                                                <q>{{ $feature->opinion }}</q>
+                                                <cite>- {{ $user->name }}</cite>
                                             </blockquote>
                                             <blockquote>
-                                                <q>Creative Template - suits my needs perfectly whilst allowing me to learn some new technology first hand.</q>
-                                                <cite>- Shane Kavanagh</cite>
+                                                <q>{{ $feature->opinion }}</q>
+                                                <cite>- {{ $user->name }}</cite>
                                             </blockquote>
                                             <blockquote>
-                                                <q>Organize Code - suits my needs perfectly whilst allowing me to learn some new technology first hand.</q>
-                                                <cite>- Shane Kavanagh</cite>
+                                                <q>{{ $feature->opinion }}</q>
+                                                <cite>- {{ $user->name }}</cite>
                                             </blockquote>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
-                        <!-- Project Items -->
-                        <div class="col-sm-12 mh-featured-item">
-                            <div class="row">
-                                <div class="col-sm-7">
-                                    <div class="mh-featured-project-img shadow-2 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                                        <img src="{{ asset('assets/images/p-2.png') }}" alt="" class="img-fluid">
-                                    </div>
-                                </div>
-                                <div class="col-sm-5">
-                                    <div class="mh-featured-project-content">
-                                        <h4 class="project-category wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">Web Design</h4>
-                                        <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">Wrap</h2>
-                                        <span class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s">Design & Development</span>
-                                        <p class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">Stamp is a clean and elegant Multipurpose Landing Page Template.
-                                            It will fit perfectly for Startup, Web App or any type of Web Services.
-                                            It has 4 background styles with 6 homepage styles. 6 pre-defined color scheme.
-                                            All variations are organized separately so you can use / customize the template very easily.</p>
-                                        <a href="#" class="btn btn-fill wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">View Details</a>
-                                        <div class="mh-testimonial mh-project-testimonial wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.9s">
-                                            <blockquote>
-                                                <q>Excellent Template - suits my needs perfectly whilst allowing me to learn some new technology first hand.</q>
-                                                <cite>- Shane Kavanagh</cite>
-                                            </blockquote>
-                                            <blockquote>
-                                                <q>Creative Template - suits my needs perfectly whilst allowing me to learn some new technology first hand.</q>
-                                                <cite>- Shane Kavanagh</cite>
-                                            </blockquote>
-                                            <blockquote>
-                                                <q>Organize Code - suits my needs perfectly whilst allowing me to learn some new technology first hand.</q>
-                                                <cite>- Shane Kavanagh</cite>
-                                            </blockquote>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Project Items -->
-                        <div class="col-sm-12 mh-featured-item">
-                            <div class="row">
-                                <div class="col-sm-7">
-                                    <div class="mh-featured-project-img shadow-2 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                                        <img src="{{ asset('assets/images/p-2.png') }}" alt="" class="img-fluid">
-                                    </div>
-                                </div>
-                                <div class="col-sm-5">
-                                    <div class="mh-featured-project-content">
-                                        <h4 class="project-category wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">Web Design</h4>
-                                        <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">Wrap</h2>
-                                        <span class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s">Design & Development</span>
-                                        <p class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">Stamp is a clean and elegant Multipurpose Landing Page Template.
-                                            It will fit perfectly for Startup, Web App or any type of Web Services.
-                                            It has 4 background styles with 6 homepage styles. 6 pre-defined color scheme.
-                                            All variations are organized separately so you can use / customize the template very easily.</p>
-                                        <a href="#" class="btn btn-fill wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">View Details</a>
-                                        <div class="mh-testimonial mh-project-testimonial wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.9s">
-                                            <blockquote>
-                                                <q>Excellent Template - suits my needs perfectly whilst allowing me to learn some new technology first hand.</q>
-                                                <cite>- Shane Kavanagh</cite>
-                                            </blockquote>
-                                            <blockquote>
-                                                <q>Creative Template - suits my needs perfectly whilst allowing me to learn some new technology first hand.</q>
-                                                <cite>- Shane Kavanagh</cite>
-                                            </blockquote>
-                                            <blockquote>
-                                                <q>Organize Code - suits my needs perfectly whilst allowing me to learn some new technology first hand.</q>
-                                                <cite>- Shane Kavanagh</cite>
-                                            </blockquote>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+                    @endforeach
+
                     </div>
                 </div>
             </div> <!-- End: .row -->
@@ -275,73 +182,20 @@
                         <div class="mh-professional-skill wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
                             <h3>Technical Skills</h3>
                             <div class="each-skills">
+                                @foreach($user->skill as $skill)
                                 <div class="candidatos">
                                     <div class="parcial">
                                         <div class="info">
-                                            <div class="nome">Javascript</div>
-                                            <div class="percentagem-num">86%</div>
+                                            <div class="nome">{{ $skill->name }}</div>
+                                            <div class="percentagem-num">{{ $skill->percent }}%</div>
                                         </div>
                                         <div class="progressBar">
-                                            <div class="percentagem" style="width: 86%;"></div>
+                                            <div class="percentagem" style="width: {{ $skill->percent }}%;"></div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="candidatos">
-                                    <div class="parcial">
-                                        <div class="info">
-                                            <div class="nome">Java</div>
-                                            <div class="percentagem-num">46%</div>
-                                        </div>
-                                        <div class="progressBar">
-                                            <div class="percentagem" style="width: 46%;"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="candidatos">
-                                    <div class="parcial">
-                                        <div class="info">
-                                            <div class="nome">Python</div>
-                                            <div class="percentagem-num">38%</div>
-                                        </div>
-                                        <div class="progressBar">
-                                            <div class="percentagem" style="width: 38%;"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="candidatos">
-                                    <div class="parcial">
-                                        <div class="info">
-                                            <div class="nome">PHP</div>
-                                            <div class="percentagem-num">17%</div>
-                                        </div>
-                                        <div class="progressBar">
-                                            <div class="percentagem" style="width: 17%;"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
 
-                                <div class="candidatos">
-                                    <div class="parcial">
-                                        <div class="info">
-                                            <div class="nome">Python</div>
-                                            <div class="percentagem-num">38%</div>
-                                        </div>
-                                        <div class="progressBar">
-                                            <div class="percentagem" style="width: 38%;"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="candidatos">
-                                    <div class="parcial">
-                                        <div class="info">
-                                            <div class="nome">PHP</div>
-                                            <div class="percentagem-num">17%</div>
-                                        </div>
-                                        <div class="progressBar">
-                                            <div class="percentagem" style="width: 17%;"></div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -350,22 +204,14 @@
                     <div class="mh-professional-skills wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
                         <h3>Professional Skills</h3>
                         <ul class="mh-professional-progress">
+
+                            @foreach($user->professionalskills as $pskills)
                             <li>
-                                <div class="mh-progress mh-progress-circle" data-progress="95"></div>
-                                <div class="pr-skill-name">Communication</div>
+                                <div class="mh-progress mh-progress-circle" data-progress="{{ $pskills->percent }}"></div>
+                                <div class="pr-skill-name">{{ $pskills->p_skill }}</div>
                             </li>
-                            <li>
-                                <div class="mh-progress mh-progress-circle" data-progress="55"></div>
-                                <div class="pr-skill-name">Team Work</div>
-                            </li>
-                            <li>
-                                <div class="mh-progress mh-progress-circle" data-progress="86"></div>
-                                <div class="pr-skill-name">Project Management</div>
-                            </li>
-                            <li>
-                                <div class="mh-progress mh-progress-circle" data-progress="60"></div>
-                                <div class="pr-skill-name">Creativity</div>
-                            </li>
+                            @endforeach
+
                         </ul>
                     </div>
                 </div>
@@ -388,26 +234,13 @@
                         <h3 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">Education</h3>
                         <div class="mh-education-deatils">
                             <!-- Education Institutes-->
+                            @foreach($user->education as $education)
                             <div class="mh-education-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
-                                <h4>Art & Multimedia From <a href="#">Oxford University</a></h4>
-                                <div class="mh-eduyear">2005-2008</div>
-                                <p>It is a long established fact that a reader will be distracted by the readable content of a
-                                    page when looking at its layout. The point of using  Lorem Ipsum </p>
+                                <h4>{{ $education->degree }} <a href="#">{{ $education->school_name }}</a></h4>
+                                <div class="mh-eduyear">{{ $education->start_date }} - {{ $education->finish_date }}</div>
+                                <p>{{ $education->description }}</p>
                             </div>
-                            <!-- Education Institutes-->
-                            <div class="mh-education-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
-                                <h4>Art & Multimedia From <a href="#">Oxford University</a></h4>
-                                <div class="mh-eduyear">2005-2008</div>
-                                <p>It is a long established fact that a reader will be distracted by the readable content of a
-                                    page when looking at its layout. The point of using  Lorem Ipsum </p>
-                            </div>
-                            <!-- Education Institutes-->
-                            <div class="mh-education-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s">
-                                <h4>Art & Multimedia From <a href="#">Oxford University</a></h4>
-                                <div class="mh-eduyear">2005-2008</div>
-                                <p>It is a long established fact that a reader will be distracted by the readable content of a
-                                    page when looking at its layout. The point of using L orem Ipsum </p>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

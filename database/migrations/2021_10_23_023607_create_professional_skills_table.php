@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAboutMesTable extends Migration
+class CreateProfessionalSkillsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateAboutMesTable extends Migration
      */
     public function up()
     {
-        Schema::create('about_mes', function (Blueprint $table) {
+        Schema::create('professional_skills', function (Blueprint $table) {
             $table->id();
+
             $table->unsignedBigInteger('user_id');
-            $table->tinyText('description')->nullable();
+            $table->string('p_skill')->nullable();
+            $table->integer('percent')->nullable();
+
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateAboutMesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('about_mes');
+        Schema::dropIfExists('professional_skills');
     }
 }

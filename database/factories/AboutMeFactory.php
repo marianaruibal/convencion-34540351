@@ -22,7 +22,8 @@ class AboutMeFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'description' => $this->faker->text(),
+            'user_id'=> rand(1,5)
         ];
     }
 }

@@ -58,4 +58,34 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function skill()
+    {
+        return $this->hasMany(Skill::class, 'user_id', 'id');
+    }
+
+    public function education()
+    {
+        return $this->hasMany(Education::class, 'user_id', 'id');
+    }
+
+    public function whatido()
+    {
+        return $this->hasMany(WhatIdo::class, 'user_id', 'id');
+    }
+
+    public function aboutme()
+    {
+        return $this->hasMany(AboutMe::class, 'user_id', 'id');
+    }
+
+    public function featureproyect()
+    {
+        return $this->hasMany(FeaturedProyect::class, 'user_id', 'id');
+    }
+
+    public function professionalskills()
+    {
+        return $this->hasMany(ProfessionalSkill::class, 'user_id', 'id');
+    }
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use App\Models\Skill;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +21,7 @@ Route::get('hola', function(){
 
    /* $users = User::where('name', 'Ms. Constance Boehm II')->get();
     dd($users[0]->name);*/
+    //dd() es como un vardump()
     return view('hola');
 });
 
@@ -27,9 +29,29 @@ Route::get('adios', function(){
     return view('adios');
 });
 
+Route::get('/portfolio/{slug}', function($slug){
+
+    $user = User::with('skill')->with('education')->with('aboutme')->with('whatido')->with('featureproyect')->with('professionalskills')->where('slug', $slug)->first();
+
+    //dd($user);
+
+    if($user){
+        return view('portfolio')->with('user', $user);
+    }else{
+        return view('welcome');
+    }
+
+
+});
+
 Route::get('/portfolio', function(){
-    $users = User::get();
-    return view('portfolio')->with('users', $users);
+
+    $user = User::with('skill')->with('education')->with('aboutme')->with('whatido')->with('featureproyect')->with('professionalskills')->latest()->get();
+    //$skill = Skill::latest()->get();
+
+    //dd($user);
+    //return view('portfolio', compact('user', 'skill'));
+    return view('portfolio')->with('user', $user[0]);
 });
 
 

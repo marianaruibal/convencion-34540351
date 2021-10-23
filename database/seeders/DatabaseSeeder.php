@@ -2,6 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\AboutMe;
+use App\Models\Education;
+use App\Models\FeaturedProyect;
+use App\Models\ProfessionalSkill;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Skill;
@@ -17,9 +21,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(10)->create();
-        Skill::factory(10)->create();
-        SocialMedia::factory(10)->create();
-        WhatIdo::factory(10)->create();
+        User::factory(5)->create();
+        Skill::factory(25)->create();
+        WhatIdo::factory(25)->create();
+        Education::factory(18)->create();
+        AboutMe::factory(25)->create();
+        FeaturedProyect::factory(18)->create();
+        ProfessionalSkill::factory(25)->create();
     }
 }

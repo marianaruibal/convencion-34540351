@@ -22,8 +22,9 @@ class WhatIdoFactory extends Factory
     public function definition()
     {
         return [
-            'title'=>$this->faker->title,
+            'title'=>$this->faker->word,
             'description'=>$this->faker->text,
+            'user_id'=> rand(1,5)
         ];
     }
 }

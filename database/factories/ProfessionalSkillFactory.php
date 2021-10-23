@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\SocialMedia;
+use App\Models\ProfessionalSkill;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class SocialMediaFactory extends Factory
+class ProfessionalSkillFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = SocialMedia::class;
+    protected $model = ProfessionalSkill::class;
 
     /**
      * Define the model's default state.
@@ -22,8 +22,11 @@ class SocialMediaFactory extends Factory
     public function definition()
     {
         return [
-            'red' => $this->faker->word,
-            'url' => $this->faker->url,
+
+            'user_id' => rand(1,5),
+            'p_skill' => $this->faker->word,
+            'percent'=> rand(1,99)
+
         ];
     }
 }

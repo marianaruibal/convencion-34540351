@@ -15,6 +15,7 @@ class CreateWhatIdosTable extends Migration
     {
         Schema::create('what_idos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->tinyText('title');
             $table->text('description');
             $table->timestamps();
