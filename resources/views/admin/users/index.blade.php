@@ -16,7 +16,7 @@
                         type="submit"
                         value="Eliminar"
                         class="bg-danger p-2 rounded"
-                        onclick="return confirm('¿Delea eliminar este usuario...?')"
+                        onclick="return confirm('¿Desea eliminar este usuario...?')"
                     />
                 </form>
                 </div>

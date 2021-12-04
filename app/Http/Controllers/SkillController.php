@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Skill;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
+class SkillController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-       $users = User::with('education', 'skill')->latest()->get();
-
-       //dd($users);
-       return view('admin.users.index', compact('users'));
+        //
     }
 
     /**
@@ -28,7 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //return view('welcome');
+        //
     }
 
     /**
@@ -39,7 +35,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $skill = Skill::create([
+            'name' => $data['name'],
+            'user_id' => intval($data['user_id']),
+            'percent' => 50
+        ]);
+
+        $skill->save();
+
+        return redirect()->to('user/'. $skill->user_id . '/edit')->with('success', 'Habilitadad creada con exito!');
     }
 
     /**
@@ -59,9 +65,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        return view('admin.users.edit', compact('user'));
+        //
     }
 
     /**
@@ -71,10 +77,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Skill $skill)
     {
-        $user->update($request->all());
-        return redirect()->to('user');
+        $skill->update($request->all());
+        return redirect()->to('user/'. $skill->user_id . '/edit')->with('success', 'Habilitadad editada con exito!');
     }
 
     /**
@@ -83,12 +89,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Skill $skill)
     {
-        $user = User::find($id);
+        $id = $skill->user_id;
 
-        $user->delete();
+        $skill = Skill::find($skill->$id);
 
-        return redirect()->to('user');
+        $skill->delete();
+
+        return redirect()->to('user/'. $id . '/edit')->with('danger', 'Habilitadad borrada con exito!');
     }
 }

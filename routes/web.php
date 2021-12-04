@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SkillController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
@@ -45,6 +46,10 @@ Route::get('/portfolio/{slug}', function($slug){
 });
 
 Route::resource('user', UserController::class)->except([
+    'show'
+]);
+
+Route::resource('skill', SkillController::class)->except([
     'show'
 ]);
 /*
