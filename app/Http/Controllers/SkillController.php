@@ -93,10 +93,9 @@ class SkillController extends Controller
     {
         $id = $skill->user_id;
 
-        $skill = Skill::find($skill->$id);
-
+        $skill = Skill::find($skill->id);
         $skill->delete();
 
-        return redirect()->to('user/'. $id . '/edit')->with('danger', 'Habilitadad borrada con exito!');
+        return redirect()->to('user/'.$id.'/edit')->with('danger', 'Habilidad borrada con exito!');
     }
 }

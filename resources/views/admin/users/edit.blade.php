@@ -40,7 +40,7 @@
                         @if ($user->image)
                             <img class="card-img-top" src="{{ $user->get_image }}" alt="{{ $user->name }}">
                         @else
-                            <img class="card-img-top" src="http://lorempixel.com/400/200/" alt="Card image cap">
+                            <img class="card-img-top" src="https://picsum.photos/640/360" alt="Card image cap">
                         @endif
                         <input type="file" name="file">
                         @error('file')

@@ -27,6 +27,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'image',
     ];
 
     /**
@@ -94,5 +95,15 @@ class User extends Authenticatable
         return $this->hasMany(FeaturedPost::class, 'user_id', 'id');
     }
 
+    public function getGetImageAttribute($key)
+    {
+        if($this->image){
+            return url("storage/$this->image");
+        }
+    }
+    public function getUppercaseAttribute($key)
+    {
+        return strtoupper($this->name);
+    }
 
 }

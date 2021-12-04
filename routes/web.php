@@ -52,6 +52,8 @@ Route::resource('user', UserController::class)->except([
 Route::resource('skill', SkillController::class)->except([
     'show'
 ]);
+
+
 /*
 Route::get('/portfolio', function(){
 
