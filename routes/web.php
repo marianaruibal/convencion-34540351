@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Skill;
@@ -41,8 +42,11 @@ Route::get('/portfolio/{slug}', function($slug){
         return view('welcome');
     }
 
-
 });
+
+Route::resource('user', UserController::class)->except([
+    'show'
+]);
 /*
 Route::get('/portfolio', function(){
 
@@ -56,5 +60,6 @@ Route::get('/portfolio', function(){
 */
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+
+    return view('admin.dashboard');
 })->name('dashboard');
