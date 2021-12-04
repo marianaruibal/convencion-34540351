@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -71,9 +73,18 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
+       /* $request->validate([
+            'name'=> 'required | min:5 | max:100',
+            'title_job' => 'required | min:5 | max:64',
+            'tel' => 'required | numeric | min:6',
+            'address' => 'required | min:10 | max:128',
+            'file' => 'image:jpg | image:png | image:jpeg | dimensions:min_width=100,min_height=200| size:513',
+        ]);*/
+
         if($request->file('file')){
+            Storage::disk('public')->delete($user->image);
             $user->image = $request->file('file')->store('users', 'public');
             $user->save();
         }
@@ -91,6 +102,11 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
+
+        if($user->image){
+            Storage::disk('public')->delete($user->image);
+
+        }
 
         $user->delete();
 
