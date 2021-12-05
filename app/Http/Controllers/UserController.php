@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-       $users = User::with('education', 'skill')->latest()->get();
+       $users = User::with('education', 'skill', 'roles')->latest()->get();
 
        //dd($users);
        return view('admin.users.index', compact('users'));
@@ -39,10 +39,27 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
-        //
+        $data = $request->all();
+
+        $skill = User::create([
+
+            'name' => $data['name'],
+            'user_id' => intval($data['user_id']),
+            'percent' => 50
+        ]);
+
+        $user->save();
+
+        if($user->role == 'admin'){
+        return redirect()->to('user')->with('success', 'Datos guardados con exito!');
+        exit;
+        }
+        return redirect()->to('my-portfolio')->with('success', 'Datos guardados con exito!');
     }
+
+
 
     /**
      * Display the specified resource.
@@ -75,23 +92,49 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-       /* $request->validate([
-            'name'=> 'required | min:5 | max:100',
-            'title_job' => 'required | min:5 | max:64',
-            'tel' => 'required | numeric | min:6',
-            'address' => 'required | min:10 | max:128',
-            'file' => 'image:jpg | image:png | image:jpeg | dimensions:min_width=100,min_height=200| size:513',
-        ]);*/
 
-        if($request->file('file')){
-            Storage::disk('public')->delete($user->image);
-            $user->image = $request->file('file')->store('users', 'public');
+            if($request->file('file')){
+                Storage::disk('public')->delete($user->image);
+                $user->image = $request->file('file')->store('users', 'public');
+                $user->save();
+            }
+
+            if($request->file('about_image')){
+                Storage::disk('public')->delete($user->about_image);
+                $user->about_image = $request->file('about_image')->store('users', 'public');
+                $user->save();
+             }
+
+            $user->update($request->all());
+
+            if($user->role == 'admin'){
+
+                return redirect()->to('user')->with('success', 'Datos guardados con exito!');
+                exit;
+            }
+
+            return redirect()->to('my-portfolio')->with('success', 'Datos guardados con exito!');
+    }
+
+    public function updateAbout(UserRequest $request, User $user){
+
+        if($request->file('about_image')){
+            Storage::disk('public')->delete($user->about_image);
+            $user->about_image = $request->file('about_image')->store('users', 'public');
             $user->save();
         }
 
         $user->update($request->all());
-        return redirect()->to('user');
+
+        if($user->role == 'admin'){
+
+            return redirect()->to('user')->with('success', 'Datos sobre mi editados con exito!');
+            exit;
+        }
+
+        return redirect()->to('my-portfolio')->with('success', 'Datos sobre mi editados con exito!');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -111,5 +154,30 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->to('user');
+    }
+
+    /**
+     * Logout the user.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function logout_user()
+    {
+        Auth::logout();;
+
+        return view('welcome');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function my_portfolio()
+    {
+        $user = User::find(Auth::user()->id)->with('education', 'skill', 'roles')->first();
+
+        return view('my-portfolio', compact('user'));
     }
 }

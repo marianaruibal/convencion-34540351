@@ -12,7 +12,7 @@
                 <div class="col-sm-6">
                     <div class="mh-header-info">
                         <div class="mh-promo wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
-                            <span>Hello I'm</span>
+                            <span>{{ $user->top_message }}</span>
                         </div>
 
                         <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">{{ $user->name }}</h2>
@@ -25,10 +25,22 @@
                         </ul>
 
                         <ul class="social-icon wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-github"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                            @foreach($user->socialmedia as $social)
+                                @if($social->red == 'facebook')
+                                <li><a href="{{ $social->red }}"><i class="fa fa-facebook"></i></a></li>
+                                @endif
+                                @if ($social->red == 'instagram')
+                                 <li><a href="{{ $social->red }}"><i class="fa fa-instagram"></i></a></li>
+                                @endif
+
+                                @if ($social->red == 'twitter')
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                @endif
+
+                                @if ($social->red == 'github')
+                                <li><a href="#"><i class="fa fa-github"></i></a></li>
+                                @endif
+                            @endforeach
                         </ul>
                     </div>
                 </div>

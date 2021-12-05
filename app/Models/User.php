@@ -9,9 +9,12 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
+
 
 class User extends Authenticatable
 {
+    use HasRoles;
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
@@ -25,12 +28,18 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'top_message',
         'title_job',
         'email',
         'password',
         'image',
         'tel',
-        'address'
+        'address',
+        'about_description',
+        'about_title',
+        'about_image',
+        'about_cv',
+        'whatido_title'
     ];
 
     /**
@@ -75,7 +84,7 @@ class User extends Authenticatable
 
     public function whatido()
     {
-        return $this->hasMany(WhatIdo::class, 'user_id', 'id');
+        return $this->hasMany(Whatido::class, 'user_id', 'id');
     }
 
     public function professionalskill()
@@ -96,6 +105,16 @@ class User extends Authenticatable
     public function featuredpost()
     {
         return $this->hasMany(FeaturedPost::class, 'user_id', 'id');
+    }
+
+    public function socialmedia()
+    {
+        return $this->hasMany(SocialMedia::class, 'user_id', 'id');
+    }
+
+    public function aboutme()
+    {
+        return $this->hasMany(AboutMe::class, 'user_id', 'id');
     }
 
     public function getGetImageAttribute($key)

@@ -26,14 +26,18 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
+            'top_message' => 'Hello I m' ,
             'email' => $this->faker->unique()->safeEmail(),
             'slug' => $this->faker->word(),
-            'title_job' => $this->faker->text,
+            'title_job' => $this->faker->name,
             'tel' => '+54114569863',
             'address' => $this->faker->address,
             'country' => $this->faker->country,
             'excerpt' => $this->faker->text,
-            'description' => $this->faker->text,
+            'about_description' => $this->faker->text,
+            'about_title'=> 'About me',
+            'about_cv'=> 'Download CV',
+            'whatido_title' => 'What I do',
             'email_verified_at' => now(),
             'password' => '$2a$12$FM04nRmWIY.yTHyyGQxQQubxFRiwa9HNliCmBX/j4XS3lhf4GDDlq', // password
             'remember_token' => Str::random(10),

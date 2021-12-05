@@ -24,7 +24,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Link</a>
+            <a class="nav-link" href="{{ route('logout-user') }}" tabindex="-1">Logout</a>
           </li>
         </ul>
         <form class="d-flex">

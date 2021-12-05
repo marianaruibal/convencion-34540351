@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\AboutMe;
 use App\Models\Education;
 use App\Models\FeaturedPost;
 use App\Models\FeaturedProyect;
@@ -11,7 +12,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Skill;
 use App\Models\SocialMedia;
-use App\Models\WhatIdo;
+use App\Models\Whatido;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,9 +23,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(5)->create();
+        User::factory(5)->create()->each(function ($user){
+            $user->assignRole('client');
+        });
         Skill::factory(25)->create();
-        WhatIdo::factory(25)->create();
+        Whatido::factory(25)->create();
         Education::factory(18)->create();
         FeaturedProyect::factory(18)->create();
         ProfessionalSkill::factory(25)->create();

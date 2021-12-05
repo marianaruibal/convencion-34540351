@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique()->nullable();
+            $table->string('top_message')->nullable();
             $table->string('image')->nullable();
             $table->string('title_job')->nullable();
             $table->string('email')->unique();
@@ -25,7 +26,11 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('country')->nullable();
             $table->text('excerpt')->nullable();
-            $table->tinyText('description')->nullable();
+            $table->tinyText('about_description')->nullable();
+            $table->string('about_title')->nullable();
+            $table->string('about_image')->nullable();
+            $table->string('about_cv')->nullable();
+            $table->string('whatido_title')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();

@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\WhatIdo;
+use App\Models\Whatido;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class WhatIdoFactory extends Factory
+class WhatidoFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = WhatIdo::class;
+    protected $model = Whatido::class;
 
     /**
      * Define the model's default state.
@@ -22,9 +22,7 @@ class WhatIdoFactory extends Factory
     public function definition()
     {
         return [
-            'title'=>$this->faker->word,
-            'description'=>$this->faker->text,
-            'user_id'=> rand(1,5)
+            //
         ];
     }
 }
