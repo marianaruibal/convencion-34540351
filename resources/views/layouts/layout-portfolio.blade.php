@@ -75,7 +75,7 @@
             </div>
             <div class="col-sm-12 col-md-6">
                 <div class="mh-about-inner">
-                    <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">About Me</h2>
+                    <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">{{ $user->about_title }}</h2>
 
 
                     <p class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">{{ $user->description }}</p>
@@ -88,7 +88,7 @@
 
                         </ul>
                     </div>
-                    <a href="#" class="btn btn-fill wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">Downlaod CV <i class="fa fa-download"></i></a>
+                    <a href="#" class="btn btn-fill wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">{{ $user->about_cv }}<i class="fa fa-download"></i></a>
                 </div>
             </div>
         </div>
@@ -104,7 +104,7 @@
     <div class="container">
         <div class="row section-separator">
             <div class="col-sm-12 text-center section-title wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                <h2>What I do</h2>
+                <h2>{{ $user->whatido_title }}</h2>
             </div>
             @foreach($user->whatido as $whatido)
             <div class="col-sm-4">
